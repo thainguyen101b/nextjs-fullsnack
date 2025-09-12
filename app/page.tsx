@@ -1,5 +1,8 @@
-import TodoApp from './components/TodoApp'
+import Link from 'next/link'
 
 export default function Home() {
-  return <TodoApp />
+  return <main>
+    <h1>Home</h1>
+    <Link href={`/tasks`}>Tasks</Link>
+  </main>
 }
