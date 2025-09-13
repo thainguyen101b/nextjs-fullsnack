@@ -45,7 +45,7 @@ export default function TaskRibbon({ tabs, onCmd }: TaskRibbonProps) {
             onClick={() => setActiveTabId(tab.id)}
             className={`px-4 py-2 focus:outline-none ${
               activeTabId === tab.id
-                ? "bg-sky-600 border-t-2 border-t-sky-700"
+                ? "border-b-3 border-b-primary"
                 : ""
             }`}
           >
@@ -69,7 +69,7 @@ export default function TaskRibbon({ tabs, onCmd }: TaskRibbonProps) {
                   title={cmd.tooltip ?? cmd.label}
                   onClick={() => onCmd(cmd.id)}
                   disabled={cmd.disabled}
-                  className="hover:underline hover:underline-offset-8 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="not-disabled:hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {cmd.label}
                 </button>

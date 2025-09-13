@@ -3,9 +3,11 @@
 import { useState } from "react";
 import TaskRibbon from "../components/tasks/task-ribbon";
 import { tabs } from "./task-ribbon-tabs-config";
+import Modal from "../components/modal";
 
 export default function TasksPage() {
   const [activeTab, setActiveTab] = useState<"task" | "calendar">("task");
+  const [open, setOpen] = useState(false);
 
   function handleTaskRibbonCommand(cmdId: string) {
     switch (cmdId) {
@@ -36,7 +38,7 @@ export default function TasksPage() {
       <div
         role="tablist"
         aria-label="Task Tabs"
-        className="flex gap-2 bg-gray-900 text-2xl"
+        className="flex gap-2 text-2xl"
       >
         <button
           id="task"
@@ -44,11 +46,7 @@ export default function TasksPage() {
           aria-selected={activeTab === "task"}
           aria-controls="panel-task"
           onClick={() => setActiveTab("task")}
-          className={`${
-            activeTab === "task"
-              ? "dark:bg-gray-400 dark:text-black"
-              : "dark:text-gray-300"
-          }`}
+          className={`${activeTab === "task" ? "text-primary" : ""}`}
         >
           task
         </button>
@@ -58,11 +56,7 @@ export default function TasksPage() {
           aria-selected={activeTab === "calendar"}
           aria-controls="panel-calendar"
           onClick={() => setActiveTab("calendar")}
-          className={`${
-            activeTab === "calendar"
-              ? "dark:bg-gray-400 dark:text-black"
-              : "dark:text-gray-300"
-          }`}
+          className={`${activeTab === "calendar" ? "text-primary" : ""}`}
         >
           calendar
         </button>
@@ -80,6 +74,23 @@ export default function TasksPage() {
       >
         calendar's content
       </div>
+
+      <button
+        onClick={() => setOpen(true)}
+        className="px-3 py-2 rounded bg-primary text-primary-foreground"
+      >
+        Open Modal
+      </button>
+
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Deactivate account"
+      >
+        <p className="text-sm">
+          Thao tác này sẽ vô hiệu hóa tài khoản của bạn. Bạn có chắc không?
+        </p>
+      </Modal>
     </div>
   );
 }
